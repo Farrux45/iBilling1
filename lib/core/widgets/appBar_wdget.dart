@@ -44,14 +44,7 @@ class GlobalAppBar extends StatelessWidget {
                 width: getWidth(20.0),
                 height: getHeight(20.0),
               ),
-              InkWell(
-                child: Icon(Icons.search),
-                onTap: () {
-                  TextFormField(
-                    textAlign: TextAlign.center,
-                  );
-                },
-              ),
+              Icon(Icons.search),
             ],
           ),
         ),
