@@ -156,29 +156,3 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 
-// CalendarAgenda(
-//             controller: _calendarAgendaControllerNotAppBar,
-//             appbar: false,
-//             selectedDayPosition: SelectedDayPosition.center,
-//             leading: IconButton(
-//               icon: const Icon(
-//                 Icons.arrow_back_ios_new,
-//                 color: Colors.white,
-//               ),
-//               onPressed: () {},
-//             ),
-//             fullCalendarScroll: FullCalendarScroll.horizontal,
-//             selectedDateColor: ColorConst.white,
-//             locale: 'uz',
-//             backgroundColor: ColorConst.grey,
-//             initialDate: DateTime.now(),
-//             firstDate: DateTime.now().subtract(const Duration(days: 140)),
-//             lastDate: DateTime.now().add(const Duration(days: 60)),
-//             events: List.generate(
-//                 100,
-//                 (index) => DateTime.now()
-//                     .subtract(Duration(days: index * random.nextInt(5)))),
-//             onDateSelected: (date) {
-//               print(date);
-//             },
-//           ),
