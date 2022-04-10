@@ -4,9 +4,7 @@ import 'package:ibilding/constant/size_config.dart';
 
 class GlobalAppBar extends StatelessWidget {
   String title;
-   GlobalAppBar({
-    Key? key, required this.title
-  }) : super(key: key);
+  GlobalAppBar({Key? key, required this.title}) : super(key: key);
 
   @override
   PreferredSizeWidget build(BuildContext context) {
@@ -46,7 +44,14 @@ class GlobalAppBar extends StatelessWidget {
                 width: getWidth(20.0),
                 height: getHeight(20.0),
               ),
-              Icon(Icons.search),
+              InkWell(
+                child: Icon(Icons.search),
+                onTap: () {
+                  TextFormField(
+                    textAlign: TextAlign.center,
+                  );
+                },
+              ),
             ],
           ),
         ),

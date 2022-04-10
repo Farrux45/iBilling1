@@ -9,4 +9,5 @@ class ColorConst {
   static Color grey = const Color(0xFF323232);
   static Color white = const Color(0xFFFFFFFF);
   static Color lightGrey = const Color(0xFF2A2A2D);
+  static Color whiteGrey = const Color(0xFF8C8C8C);
 }
