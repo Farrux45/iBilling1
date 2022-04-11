@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ibilding/constant/color_size_page.dart';
 import 'package:ibilding/constant/size_config.dart';
-import 'package:ibilding/core/widgets/contract_page.dart';
+import 'package:ibilding/core/widgets/contract_pages.dart';
+import 'package:ibilding/core/widgets/new_contract_page.dart';
 import 'package:ibilding/core/widgets/page_date.dart';
 
 class HistoryPage extends StatelessWidget {
@@ -58,7 +59,7 @@ class HistoryPage extends StatelessWidget {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1, mainAxisExtent: getHeight(155)),
             delegate: SliverChildBuilderDelegate((context, index) {
-              return ContractPage(index: index);
+              return ContractContainer(index: index);
             }),
           ),
         ],

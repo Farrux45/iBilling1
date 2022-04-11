@@ -6,9 +6,12 @@ import 'package:ibilding/bloc/container_bloc.dart';
 import 'package:ibilding/constant/color_size_page.dart';
 import 'package:ibilding/constant/size_config.dart';
 import 'package:ibilding/core/widgets/bot_nav_bar_cont.dart';
+import 'package:ibilding/core/widgets/card_container.dart';
+import 'package:ibilding/core/widgets/contract_pages.dart';
+import 'package:ibilding/core/widgets/new_contract_page.dart';
 
 class ContractsPage extends StatelessWidget {
-  ContractsPage({Key? key}) : super(key: key);
+  ContractsPage({Key? key,}) : super(key: key);
 
   final CalendarAgendaController _calendarAgendaControllerAppBar =
       CalendarAgendaController();
@@ -82,7 +85,7 @@ class ContractsPage extends StatelessWidget {
                     return context.watch<ContainerCubit>().contBool[index] ==
                             false
                         ? GestureDetector(
-                            child: ContractsPage(
+                            child: ContractContainer(
                               index: index,
                             ),
                             onTap: () {
@@ -91,7 +94,7 @@ class ContractsPage extends StatelessWidget {
                                   .addFarmCont(length: 10, index: index);
                             })
                         : GestureDetector(
-                            child: FarmContainer(),
+                            child: CardContainer(),
                             onTap: () {
                               context
                                   .read<ContainerCubit>()

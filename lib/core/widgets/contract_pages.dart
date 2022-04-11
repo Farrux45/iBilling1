@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:ibilding/constant/color_size_page.dart';
 import 'package:ibilding/constant/size_config.dart';
 
-class ContractPage extends StatelessWidget {
+class ContractContainer extends StatelessWidget {
   final int? index;
-  ContractPage({Key? key, this.index}) : super(key: key);
-  final List information = ["Yoldosheva Ziyoda", "1.200.000 UZS", "№ 156"];
+  ContractContainer({Key? key,required this.index}) : super(key: key);
+  final List list  = [
+    "Yoldosheva Ziyoda","1,200,000 UZS","№ 156"
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-          horizontal: getWidth(16.0), vertical: getHeight(6.0)),
+          horizontal: getWidth(16), vertical: getHeight(6)),
       height: getHeight(148),
       width: getWidth(343),
-      padding: EdgeInsets.all(getWidth(12.0)),
+      padding: EdgeInsets.all(getWidth(12)),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(6.0)),
+        borderRadius: const BorderRadius.all(Radius.circular(6)),
         color: ColorConst.grey,
       ),
       child: Column(
@@ -24,24 +26,24 @@ class ContractPage extends StatelessWidget {
             children: [
               Image.asset(
                 "assets/icons/contractWhite.png",
-                height: getHeight(15.0),
+                height: getHeight(15),
                 color: ColorConst.green,
               ),
-              SizedBox(width: getWidth(9.0)),
+              SizedBox(width: getWidth(9)),
               Text(
                 "№ 154",
                 style: TextStyle(
                   color: ColorConst.textWhite,
-                  fontSize: getWidth(14.0),
+                  fontSize: getWidth(14),
                   fontWeight: FontWeight.w700,
                 ),
               ),
               const Spacer(),
               Container(
                 padding: EdgeInsets.symmetric(
-                    horizontal: getWidth(7.0), vertical: getHeight(3.0)),
+                    horizontal: getWidth(7), vertical: getHeight(3)),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
                   color: ColorConst.green.withOpacity(0.3),
                 ),
                 child: Center(
@@ -55,9 +57,7 @@ class ContractPage extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            height: getHeight(14.0),
-          ),
+          SizedBox(height: getHeight(14)),
           for (var i = 0; i < 3; i++)
             Column(
               children: [
@@ -73,7 +73,7 @@ class ContractPage extends StatelessWidget {
                     ),
                     SizedBox(width: getWidth(8)),
                     Text(
-                      information[i],
+                      list[i],
                       style: TextStyle(
                         color: ColorConst.lightGrey,
                         fontSize: getWidth(14),
@@ -88,7 +88,7 @@ class ContractPage extends StatelessWidget {
           Row(
             children: [
               Text(
-                "number_of_invoices:" + ":",
+                "number_of_invoices" + ":",
                 style: TextStyle(
                   color: ColorConst.textWhite,
                   fontSize: getWidth(14),
@@ -104,21 +104,19 @@ class ContractPage extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              const Spacer(),
+              Spacer(),
               Text(
                 "31.01.2021",
                 style: TextStyle(
-                  color: ColorConst.lightGrey,
+                  color:ColorConst.lightGrey,
                   fontSize: getWidth(14),
                   fontWeight: FontWeight.w400,
                 ),
               ),
-                  ],
-                ),
-              ],
-            )
-        
-      
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

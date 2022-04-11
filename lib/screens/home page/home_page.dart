@@ -7,19 +7,19 @@ import 'package:ibilding/bloc/container_bloc.dart';
 import 'package:ibilding/constant/color_size_page.dart';
 import 'package:ibilding/constant/size_config.dart';
 import 'package:ibilding/core/widgets/BNB_icon.dart';
-import 'package:ibilding/core/widgets/contract_page.dart';
+import 'package:ibilding/core/widgets/new_contract_page.dart';
 import 'package:ibilding/core/widgets/show_page.dart';
 import 'package:ibilding/screens/bottom_pages/contract_page.dart';
 import 'package:ibilding/screens/bottom_pages/history_page.dart';
 import 'package:ibilding/screens/bottom_pages/profile_page.dart';
 import 'package:ibilding/screens/bottom_pages/saved_page.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class MyHomePage extends StatelessWidget {
+  MyHomePage({Key? key}) : super(key: key);
   final List<Widget> _pages = [
     ContractsPage(),
     HistoryPage(),
-    ContractPage(),
+    ContractsPage(),
     const SavedPage(),
     ProfilePage(),
   ];

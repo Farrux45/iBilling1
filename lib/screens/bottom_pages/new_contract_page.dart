@@ -7,7 +7,7 @@ import 'package:ibilding/screens/create_folder/newInvoice.dart';
 
 class NewContractPage extends StatelessWidget {
  NewContractPage({ Key? key }) : super(key: key);
-  final List _pages = [NewContactsPage(),NewInvoicePage()];
+  final List _pages = [NewContactPage(),NewInvoicePage()];
 
   @override
   Widget build(BuildContext context) {

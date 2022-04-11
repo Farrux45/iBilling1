@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ibilding/constant/size_config.dart';
+import 'package:ibilding/core/widgets/text_form_field_page.dart';
 
 class NewInvoicePage extends StatelessWidget {
   const NewInvoicePage({Key? key}) : super(key: key);
@@ -13,13 +14,13 @@ class NewInvoicePage extends StatelessWidget {
           ),
           child: Column(
             children: [
-              TextFormContainer(
+              TextForm(
                 name: "Xizmat nomi",
               ),
-              TextFormContainer(
+              TextForm(
                 name: "Invoice summasi",
               ),
-              TextFormContainer(name: "status of invoice"),
+              TextForm(name: "status of invoice"),
             ],
           ),
     );

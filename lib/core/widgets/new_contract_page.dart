@@ -6,8 +6,8 @@ import 'package:ibilding/constant/size_config.dart';
 import 'package:ibilding/core/widgets/pop_up_menu.dart';
 import 'package:ibilding/core/widgets/text_form_field_page.dart';
 
-class NewContactPage extends StatelessWidget {
-  const NewContactPage({Key? key}) : super(key: key);
+class NewContacts extends StatelessWidget {
+  const NewContacts({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +90,7 @@ class NewContactPage extends StatelessWidget {
                     height: getHeight(104),
                     top: getHeight(64),
                   ),
-                 PopUpPage(
+                  PopUpPage(
                     top: getHeight(395),
                     visible: context.watch<ContainerCubit>().statusVisible,
                     data: status,

@@ -48,7 +48,7 @@ class ContainerCubit extends Cubit<ContainerState> {
     langDialog = false;
     emit(LangState());
   }
-  
+
    void addLangDialog(){
     langDialog = true;
     emit(LangState());
@@ -76,6 +76,11 @@ class ContainerCubit extends Cubit<ContainerState> {
   void faceUse() {
     faceVisible = !faceVisible;
     statusVisible = false;
+    emit(PopapMenuState());
+  }
+  void statusUse(){
+    statusVisible = !statusVisible;
+    faceVisible = false;
     emit(PopapMenuState());
   }
 
