@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ibilding/constant/color_size_page.dart';
 import 'package:ibilding/constant/size_config.dart';
+import 'package:ibilding/core/widgets/contract_page.dart';
+import 'package:ibilding/core/widgets/page_date.dart';
 
 class HistoryPage extends StatelessWidget {
-  const HistoryPage({Key? key}) : super(key: key);
+  
+  HistoryPage({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class HistoryPage extends StatelessWidget {
                     const Spacer(),
                     Row(
                       children: [
-                        const DateContainer(name: "16.02.2021"),
+                      DatePage(name: "16.02.2021"),
                         Container(
                           color: ColorConst.textWhite,
                           width: getWidth(8),
@@ -43,7 +46,7 @@ class HistoryPage extends StatelessWidget {
                           margin:
                               EdgeInsets.symmetric(horizontal: getWidth(12.0)),
                         ),
-                        const DateContainer(name: "To"),
+                        DatePage(name: "To"),
                       ],
                     ),
                   ],
@@ -55,11 +58,12 @@ class HistoryPage extends StatelessWidget {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1, mainAxisExtent: getHeight(155)),
             delegate: SliverChildBuilderDelegate((context, index) {
-              return ContractContainer(index: index);
+              return ContractPage(index: index);
             }),
           ),
         ],
       ),
+      
     );
   }
 }

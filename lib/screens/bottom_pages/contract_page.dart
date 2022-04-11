@@ -1,11 +1,14 @@
 import 'dart:math';
 import 'package:calendar_agenda/calendar_agenda.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ibilding/bloc/container_bloc.dart';
 import 'package:ibilding/constant/color_size_page.dart';
 import 'package:ibilding/constant/size_config.dart';
+import 'package:ibilding/core/widgets/bot_nav_bar_cont.dart';
 
-class ContractPage extends StatelessWidget {
-  ContractPage({Key? key}) : super(key: key);
+class ContractsPage extends StatelessWidget {
+  ContractsPage({Key? key}) : super(key: key);
 
   final CalendarAgendaController _calendarAgendaControllerAppBar =
       CalendarAgendaController();
@@ -68,20 +71,37 @@ class ContractPage extends StatelessWidget {
               slivers: [
                 SliverToBoxAdapter(
                   child: Row(
-                    children: [
-                      BottomContainer(index: 0, name: "invoice"),
+                    children: const [
+                      BottomNavBar(index: 0, name: "contract"),
+                      BottomNavBar(index: 1, name: "invoice"),
                     ],
                   ),
                 ),
-                SliverGrid(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    mainAxisExtent: getHeight(155),
-                  ),
-                  delegate: SliverChildBuilderDelegate((context, index) {
-                    return ContractContainer(index: index,);
-                  }),
-                )
+                SliverList(delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    return context.watch<ContainerCubit>().contBool[index] ==
+                            false
+                        ? GestureDetector(
+                            child: ContractsPage(
+                              index: index,
+                            ),
+                            onTap: () {
+                              context
+                                  .read<ContainerCubit>()
+                                  .addFarmCont(length: 10, index: index);
+                            })
+                        : GestureDetector(
+                            child: FarmContainer(),
+                            onTap: () {
+                              context
+                                  .read<ContainerCubit>()
+                                  .removeFarmCont(index: index);
+                            },
+                          );
+                  },
+                  childCount: 10,
+                ),
+                ),
               ],
             ),
           ),

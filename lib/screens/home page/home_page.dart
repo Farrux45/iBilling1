@@ -1,158 +1,153 @@
 import 'dart:math';
-
 import 'package:calendar_agenda/calendar_agenda.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ibilding/bloc/container_bloc.dart';
 import 'package:ibilding/constant/color_size_page.dart';
 import 'package:ibilding/constant/size_config.dart';
-import 'package:ibilding/core/widgets/appBar_wdget.dart';
-import 'package:ibilding/core/widgets/card_widget.dart';
+import 'package:ibilding/core/widgets/BNB_icon.dart';
+import 'package:ibilding/core/widgets/contract_page.dart';
+import 'package:ibilding/core/widgets/show_page.dart';
+import 'package:ibilding/screens/bottom_pages/contract_page.dart';
+import 'package:ibilding/screens/bottom_pages/history_page.dart';
+import 'package:ibilding/screens/bottom_pages/profile_page.dart';
+import 'package:ibilding/screens/bottom_pages/saved_page.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
-  final CalendarAgendaController _calendarAgendaController =
-      CalendarAgendaController();
-  final CalendarAgendaController _calendarAgendaControllerNotAppBar =
-      CalendarAgendaController();
-
-  final List<Widget> _bottoms = [
+class HomePage extends StatelessWidget {
+  HomePage({Key? key}) : super(key: key);
+  final List<Widget> _pages = [
     ContractsPage(),
     HistoryPage(),
-    ContractsPage(),
-    SavedPage(),
+    ContractPage(),
+    const SavedPage(),
     ProfilePage(),
   ];
-
-  Random random = Random();
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return BlocProvider(
-      create: (_) => BlocState(),
-      child: BlocConsumer(
+      create: (context) => ContainerCubit(),
+      child: BlocConsumer<ContainerCubit, ContainerState>(
         listener: (context, state) {},
-        builder: (context, state){
-          return myScaffold(context);
+        builder: (context, state) {
+          return scaffold(context);
         },
       ),
     );
-    
   }
 
-  Scaffold myScaffold(BuildContext context) {
+  Scaffold scaffold(BuildContext context) {
+    int index = context.watch<ContainerCubit>().bottomIndex;
     return Scaffold(
       backgroundColor: ColorConst.black,
-      appBar: GlobalAppBar(title: "Contracts").build(context),
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          _bottoms[index],
-          Positioned(child: Visibility(visible: context.watch<ContBloc>().showCreate, child: Container(height: getHeight(815), width: getWidth(375), color: Colors.black.withOpacity(0.5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              showCreateContainer(),
-            ],
-          ),),),),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor:
+            index != 0 ? const Color(0xff141416) :  ColorConst.black,
+        title: Text("${appBar[index]}".tr()),
+        leading: Image.asset("assets/icons/icon1.png"),
+        actions: [
+          Visibility(
+            visible: context.watch<ContainerCubit>().visible,
+            child: SizedBox(
+              height: getHeight(20),
+              width: getWidth(80),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                 Image.asset("assets/icons/filter.png",
+                      height: getHeight(20)),
+                  Container(
+                      height: getHeight(17),
+                      width: getWidth(2),
+                      color: ColorConst.textWhite),
+                  Image.asset("assets/icons/search.png",
+                      height: getHeight(20)),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(width: getWidth(20))
         ],
       ),
-      
-       
+      body: Stack(
+        alignment: AlignmentDirectional.center,
+        children: [
+          _pages[index],
+          Positioned(
+            child: Visibility(
+              visible: context.watch<ContainerCubit>().showCreate,
+              child: Container(
+                height: getHeight(815),
+                width: getWidth(375),
+                color: Colors.black.withOpacity(0.5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    ShowContainer(),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       bottomNavigationBar: Container(
         height: getHeight(70),
         width: getWidth(375),
-        color: const Color(0xFF141416),
+        color: const Color(0xff141416),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             BottomNavIcon(
-              icon: index == 0 ? "assets/images/contract.png" : "assets/images/contractWhite.png",
-              lable: "Contacts",
-              onTap(){
-                context.read<ContBloc>().bottomChange(0);
-              }
+              icon: index == 0
+                  ? "assets/icons/contractWhite.svg"
+                  : "assets/icons/contract.svg",
+              lable: "contracts",
+              onTap: () {
+                context.read<ContainerCubit>().bottomChange(0);
+              },
             ),
             BottomNavIcon(
-              icon: index == 1 ? "assets/images/time circle.png" : "assets/images/time circleWhite.png",
-              lable: "History",
-              onTap(){
-                context.read<ContBloc>().bottomChange(1);
-              }
+              icon: index == 1
+                  ? "assets/icons/time circleWhite"
+                  : "assets/icons/time circle.svg",
+              lable: "history".tr(),
+              onTap: () {
+                context.read<ContainerCubit>().bottomChange(1);
+              },
             ),
             BottomNavIcon(
-              icon: index ==  2 ? "assets/images/plus.png" : "assets/images/plusWhite.png",
-              lable: "New",
-              onTap(){
-                context.read<ContBloc>().bottomChange(2);
-              }
+              icon: index == 2
+                  ? "assets/icons/plusWhite.svg"
+                  : "assets/icons/plus.svg",
+              lable: "new".tr(),
+              onTap: () {
+                context.read<ContainerCubit>().bottomChange(2);
+              },
             ),
             BottomNavIcon(
-              icon: index ==  3 ? "assets/images/bookmark.png" : "assets/images/bookmarkWhite.png",
-              lable: "Saved",
-              onTap(){
-                context.read<ContBloc>().bottomChange(3);
-              }
+              icon: index == 3
+                  ? "assets/icons/bookmarkWhite.svg"
+                  : "assets/icons/bookmark.svg",
+              lable: "saved".tr(),
+              onTap: () {
+                context.read<ContainerCubit>().bottomChange(3);
+              },
             ),
             BottomNavIcon(
-              icon: index ==  4 ? "assets/images/profile.png" : "assets/images/profileWhite.png",
-              lable: "Profile",
-              onTap(){
-                context.read<ContBloc>().bottomChange(2);
-              }
+              icon: index == 4
+                  ? "assets/icons/profile.svg"
+                  : "assets/icons/profileWhite.svg",
+              lable: "profile".tr(),
+              onTap: () {
+                context.read<ContainerCubit>().bottomChange(4);
+              },
             ),
           ],
-            
         ),
       ),
     );
   }
-
-  Padding myContracts() {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: getHeight(32.0),
-        left: getWidth(15.0),
-      ),
-      child: Row(
-        children: [
-          Container(
-            height: getHeight(25.0),
-            width: getWidth(76.0),
-            decoration: BoxDecoration(
-                color: ColorConst.lightGreen,
-                borderRadius: BorderRadius.circular(10.0)),
-            child: Text(
-              "Contracts",
-              style: TextStyle(
-                color: ColorConst.white,
-                fontSize: getWidth(15.0),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: getWidth(16.0),
-            ),
-            child: Text(
-              "Invoice",
-              style: TextStyle(
-                color: ColorConst.white,
-                fontSize: getWidth(15.0),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
-
-

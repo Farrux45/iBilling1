@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ibilding/constant/color_size_page.dart';
 import 'package:ibilding/constant/size_config.dart';
+import 'package:ibilding/core/widgets/contract_page.dart';
 
 class SavedPage extends StatelessWidget {
   const SavedPage({ Key? key }) : super(key: key);
@@ -12,7 +13,7 @@ class SavedPage extends StatelessWidget {
       backgroundColor: ColorConst.black,
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return ContractContainer(index: index);
+          return ContractPage(index: index);
         },
       ),
     );

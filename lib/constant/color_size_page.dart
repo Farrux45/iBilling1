@@ -13,3 +13,33 @@ class ColorConst {
   static Color green = const Color(0xff00A795);
   static Color textWhite = const Color(0xffE7E7E7);
 }
+
+List appBar = ["contracts", "history", "new_contract", "saved", "profile"];
+List contract = ["fish", "amount", "last_invoice", ""];
+List farmCont = [
+  "fisher’s_full_name",
+  "status_of_the_contract",
+  "amount",
+  "last_invoice",
+  "number_of_invoices",
+  "address_of_the_organization",
+  "ITN/IEC_of_the_organization",
+  "created_at"
+];
+List profile = ["date_of_birth", "phone_number", "e_mail"];
+List status = ["paid", "in_process", "rejected_by_payme", "rejected_by_iQ"];
+List face = ["physical", "legal"];
+List flag = [
+  "assets/icons/uzflag.png",
+  "assets/icons/ruflag.png",
+  "assets/icons/engflag.png"
+];
+Map name = {
+  "id": 1,
+  "name": "Xoshbakov Farrux",
+  "amount": "1,200,000",
+  "number": 6,
+  "adress": "Yangi Hayot",
+  "itn_iec": 1234567812,
+  "create_at": "14:38, 12 April, 2022",
+};

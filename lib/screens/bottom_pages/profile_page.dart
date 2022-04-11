@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ibilding/bloc/container_bloc.dart';
 import 'package:ibilding/constant/color_size_page.dart';
 import 'package:ibilding/constant/size_config.dart';
+import 'package:ibilding/core/widgets/showDialog_page.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({Key? key}) : super(key: key);
@@ -32,7 +35,7 @@ class ProfilePage extends StatelessWidget {
                 height: getHeight(188),
                 width: getWidth(343),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(6.0),
                   ),
                   color: ColorConst.grey,
@@ -103,7 +106,7 @@ class ProfilePage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: getWidth(14.0)),
+                          SizedBox(height: getWidth(12.0)),
                         ],
                       ),
                   ],
@@ -118,36 +121,36 @@ class ProfilePage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: getWidth(20.0)),
                   width: getWidth(343),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(6.0)),
                     color: ColorConst.grey,
                   ),
                   child: Row(
                     children: [
                       Text(
-                        context.watch<ContBloc>().lang,
+                        context.watch<ContainerCubit>().lang,
                         style: TextStyle(
                           color: ColorConst.whiteGrey,
                           fontSize: getWidth(14.0),
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       CircleAvatar(
                         radius: getWidth(11.0),
                         backgroundImage: AssetImage(
-                            flag[context.watch<ContBloc>().langIndex]),
+                            flag[context.watch<ContainerCubit>().langIndex]),
                       ),
                     ],
                   ),
                 ),
                 onTap: () {
-                  context.read<ContBloc>().addlangDialog();
+                  context.read<ContainerCubit>().addLangDialog();
                 },
               ),
             ],
           ),
           Positioned(child: Visibility(
-            visible: context.watch<ContBloc>().langDialog, 
+            visible: context.watch<ContainerCubit>().langDialog, 
           child: Container(
             height: getHeight(815),
             width: getWidth(375),
@@ -155,7 +158,7 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                LangShowDialog(),
+                ShowDialog(),
               ],
               ),
           ),

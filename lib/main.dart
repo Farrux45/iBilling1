@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:ibilding/model/card_name_model.dart';
+import 'package:ibilding/model/model.dart';
 import 'package:ibilding/screens/home%20page/home_page.dart';
 
 void main() async {
